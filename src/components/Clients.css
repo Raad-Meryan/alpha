@@ -1,0 +1,56 @@
+.clients {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 4rem 2rem;
+  background: #1a1a1a;
+}
+
+.clients-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.client-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.client-logo {
+  width: 100%;
+  aspect-ratio: 3/2;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.client-logo:hover {
+  background: rgba(100, 108, 255, 0.08);
+  border-color: rgba(100, 108, 255, 0.3);
+  transform: translateY(-5px);
+}
+
+.client-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 768px) {
+  .clients-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .client-name {
+    font-size: 0.9rem;
+  }
+}
