@@ -1,0 +1,55 @@
+.logo-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 4rem 2rem;
+  background: #1a1a1a;
+}
+
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.logo-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-box {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.logo-box:hover {
+  background: rgba(100, 108, 255, 0.1);
+  border-color: rgba(100, 108, 255, 0.5);
+  transform: scale(1.05);
+}
+
+.logo-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 768px) {
+  .logo-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  
+  .logo-name {
+    font-size: 1.2rem;
+  }
+}
