@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Contact.css';
+import ScrollReveal from '../assets/ScrollReveal';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -24,27 +25,60 @@ const Contact = () => {
   return (
     <section id="contact" className="contact">
       <div className="container">
-        <h2 className="section-title">Get In Touch</h2>
+        <ScrollReveal
+          baseOpacity={0}
+          enableBlur={true}
+          baseRotation={5}
+          blurStrength={10}
+          as="h2"
+          containerClassName="section-title"
+        >
+          Get In Touch
+        </ScrollReveal>
         <div className="contact-content">
           <div className="contact-info">
             <div className="info-item">
               <div className="info-icon">📧</div>
               <div>
-                <h3>Email</h3>
+                <ScrollReveal
+                  baseOpacity={0}
+                  enableBlur={true}
+                  baseRotation={5}
+                  blurStrength={10}
+                  as="h3"
+                >
+                  Email
+                </ScrollReveal>
                 <a href="mailto:info@alpha.com">info@alpha.com</a>
               </div>
             </div>
             <div className="info-item">
               <div className="info-icon">📱</div>
               <div>
-                <h3>Phone</h3>
+                <ScrollReveal
+                  baseOpacity={0}
+                  enableBlur={true}
+                  baseRotation={5}
+                  blurStrength={10}
+                  as="h3"
+                >
+                  Phone
+                </ScrollReveal>
                 <a href="tel:+1234567890">+1 (234) 567-890</a>
               </div>
             </div>
             <div className="info-item">
               <div className="info-icon">📸</div>
               <div>
-                <h3>Instagram</h3>
+                <ScrollReveal
+                  baseOpacity={0}
+                  enableBlur={true}
+                  baseRotation={5}
+                  blurStrength={10}
+                  as="h3"
+                >
+                  Instagram
+                </ScrollReveal>
                 <a href="https://instagram.com/alpha" target="_blank" rel="noopener noreferrer">@alpha</a>
               </div>
             </div>

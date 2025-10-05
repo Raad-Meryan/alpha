@@ -3,7 +3,6 @@ import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import About from './components/About';
 import Vision from './components/Vision';
-import LogoSection from './components/LogoSection';
 import Team from './components/Team';
 import Clients from './components/Clients';
 import Gallery from './components/Gallery';
@@ -17,7 +16,6 @@ function App() {
       <Hero />
       <About />
       <Vision />
-      <LogoSection />
       <Team />
       <Clients />
       <Gallery />

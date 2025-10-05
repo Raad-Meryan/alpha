@@ -1,5 +1,6 @@
 import React from 'react';
 import './Gallery.css';
+import ScrollReveal from '../assets/ScrollReveal';
 
 const Gallery = () => {
   const projects = [
@@ -14,14 +15,41 @@ const Gallery = () => {
   return (
     <section id="gallery" className="gallery">
       <div className="container">
-        <h2 className="section-title">Our Work</h2>
+        <ScrollReveal
+          baseOpacity={0}
+          enableBlur={true}
+          baseRotation={5}
+          blurStrength={10}
+          as="h2"
+          containerClassName="section-title"
+        >
+          Our Work
+        </ScrollReveal>
         <div className="gallery-grid">
           {projects.map((project) => (
             <div key={project.id} className="gallery-item">
               <div className="gallery-content">
                 <div className="gallery-number">{String(project.id).padStart(2, '0')}</div>
-                <h3 className="gallery-title">{project.title}</h3>
-                <p className="gallery-category">{project.category}</p>
+                <ScrollReveal
+                  baseOpacity={0}
+                  enableBlur={true}
+                  baseRotation={5}
+                  blurStrength={10}
+                  as="h3"
+                  containerClassName="gallery-title"
+                >
+                  {project.title}
+                </ScrollReveal>
+                <ScrollReveal
+                  baseOpacity={0}
+                  enableBlur={true}
+                  baseRotation={5}
+                  blurStrength={10}
+                  as="p"
+                  containerClassName="gallery-category"
+                >
+                  {project.category}
+                </ScrollReveal>
               </div>
             </div>
           ))}

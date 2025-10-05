@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Navigation.css';
+import alphaLogo from '../assets/alpha_logo_transparent.png';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,7 +36,8 @@ const Navigation = () => {
     <nav className={`navigation ${isScrolled ? 'scrolled' : ''}`}>
       <div className="nav-container">
         <div className="nav-logo" onClick={() => scrollToSection('hero')}>
-          ALPHA
+          <img src={alphaLogo} alt="Alpha" className="nav-logo-image" />
+          <span className="nav-logo-text">ALPHA PROJECT</span>
         </div>
         <ul className="nav-menu">
           {navItems.map((item) => (

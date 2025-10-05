@@ -1,5 +1,6 @@
 import React from 'react';
 import './Team.css';
+import ScrollReveal from '../assets/ScrollReveal';
 
 const Team = () => {
   const teamMembers = [
@@ -12,15 +13,42 @@ const Team = () => {
   return (
     <section id="team" className="team">
       <div className="container">
-        <h2 className="section-title">Our Team</h2>
+        <ScrollReveal
+          baseOpacity={0}
+          enableBlur={true}
+          baseRotation={5}
+          blurStrength={10}
+          as="h2"
+          containerClassName="section-title"
+        >
+          Our Team
+        </ScrollReveal>
         <div className="team-grid">
           {teamMembers.map((member, index) => (
             <div key={index} className="team-member">
               <div className="member-avatar">
                 <span className="member-initials">{member.initials}</span>
               </div>
-              <h3 className="member-name">{member.name}</h3>
-              <p className="member-role">{member.role}</p>
+              <ScrollReveal
+                baseOpacity={0}
+                enableBlur={true}
+                baseRotation={5}
+                blurStrength={10}
+                as="h3"
+                containerClassName="member-name"
+              >
+                {member.name}
+              </ScrollReveal>
+              <ScrollReveal
+                baseOpacity={0}
+                enableBlur={true}
+                baseRotation={5}
+                blurStrength={10}
+                as="p"
+                containerClassName="member-role"
+              >
+                {member.role}
+              </ScrollReveal>
             </div>
           ))}
         </div>

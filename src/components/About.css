@@ -13,12 +13,13 @@
 }
 
 .section-title {
-  font-size: 3rem;
+  font-size: 5rem;
   font-weight: 700;
   color: #ffffff;
   margin-bottom: 3rem;
   text-align: center;
   position: relative;
+  font-family: 'SF Pro Display', 'SF Pro', system-ui, sans-serif;
 }
 
 .section-title::after {
@@ -38,19 +39,23 @@
 }
 
 .about-text {
-  font-size: 1.2rem;
+  font-size: 1.9rem;
   line-height: 1.8;
   color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   text-align: center;
+  font-family: 'SF Pro Text', 'SF Pro', system-ui, sans-serif;
 }
 
 @media (max-width: 768px) {
   .section-title {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
   
   .about-text {
-    font-size: 1rem;
+    font-size: 2.1rem;
+  }
+  .about-content-size {
+    font-size: 2rem;
   }
 }

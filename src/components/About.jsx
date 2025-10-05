@@ -1,20 +1,55 @@
 import React from 'react';
 import './About.css';
+import ScrollReveal from '../assets/ScrollReveal';
 
 const About = () => {
   return (
     <section id="about" className="about">
       <div className="container">
-        <h2 className="section-title">About Us</h2>
+        <ScrollReveal
+          baseOpacity={0.1}
+          enableBlur={true}
+          baseRotation={0}
+          blurStrength={4}
+          as="h2"
+          containerClassName="section-title"
+        >
+          About Us
+        </ScrollReveal>
         <div className="about-content">
-          <p className="about-text">
-            We are a creative studio dedicated to crafting exceptional digital experiences. 
-            Our team combines innovation with expertise to deliver solutions that inspire and engage.
-          </p>
-          <p className="about-text">
-            With a focus on modern design principles and cutting-edge technology, 
-            we transform ideas into reality, creating meaningful connections between brands and their audiences.
-          </p>
+          <ScrollReveal
+            baseOpacity={0.1}
+            enableBlur={true}
+            baseRotation={5}
+            blurStrength={4}
+            as="p"
+            containerClassName="about-text"
+          >
+            A cinematic production company
+          </ScrollReveal>
+
+          <ScrollReveal
+            baseOpacity={0.1}
+            enableBlur={true}
+            baseRotation={5}
+            blurStrength={4}
+            as="p"
+            containerClassName="about-text"
+          >
+            founded in Amman, Jordan in 2021.
+          </ScrollReveal>
+
+          <ScrollReveal
+            baseOpacity={0.1}
+            enableBlur={true}
+            baseRotation={5}
+            blurStrength={4}
+            as="p"
+            containerClassName="about-content-size"
+          >
+            We breathe life into stories, ignite inspiration within people, and transport you into new worlds, filled with emotions, wonder, and hope.
+          </ScrollReveal>
+          
         </div>
       </div>
     </section>

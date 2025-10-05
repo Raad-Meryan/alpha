@@ -26,19 +26,32 @@
 }
 
 .nav-logo {
-  font-size: 1.5rem;
-  font-weight: 900;
-  background: linear-gradient(135deg, #646cff 0%, #9ca4ff 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   cursor: pointer;
-  letter-spacing: 0.1em;
   transition: transform 0.3s ease;
 }
 
 .nav-logo:hover {
   transform: scale(1.05);
+}
+
+.nav-logo-image {
+  height: 40px;
+  width: auto;
+  filter: drop-shadow(0 2px 4px rgba(100, 108, 255, 0.3));
+}
+
+.nav-logo-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: 'SF Pro Display', 'SF Pro', system-ui, sans-serif;
+  background: linear-gradient(135deg, #646cff 0%, #9ca4ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.02em;
 }
 
 .nav-menu {

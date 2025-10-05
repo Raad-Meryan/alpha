@@ -11,6 +11,7 @@
   
   /* Typography */
   --font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --font-family-heading: 'SF Pro Display', 'SF Pro', system-ui, Avenir, Helvetica, Arial, sans-serif;
   --font-size-base: 16px;
   
   /* Transitions */
@@ -64,6 +65,9 @@ a:hover {
 
 h1, h2, h3, h4, h5, h6 {
   color: var(--text-primary);
+  font-family: var(--font-family-heading);
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 button {
