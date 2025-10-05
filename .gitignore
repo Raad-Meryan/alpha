@@ -22,3 +22,15 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Font source files (keep only the extracted fonts)
+*.dmg
+*:Zone.Identifier
+src/assets/*.dmg
+src/assets/*:Zone.Identifier
+public/fonts/sf-pro/SFProFonts/
+Payload~
+
+# Large binary files
+*.pkg
+*.hfs
