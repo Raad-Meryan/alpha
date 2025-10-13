@@ -34,3 +34,6 @@ Payload~
 # Large binary files
 *.pkg
 *.hfs
+# Large video files
+*.mp4
+src/assets/*.mp4
