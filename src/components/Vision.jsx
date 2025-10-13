@@ -2,7 +2,6 @@ import React from 'react';
 import './Vision.css';
 import ScrollReveal from '../assets/ScrollReveal';
 import TrueFocus from '../assets/TrueFocus';
-import visionVideo from '../assets/Vision.mp4';
 
 const Vision = () => {
   return (
@@ -18,16 +17,14 @@ const Vision = () => {
         />
         <div className="vision-content">
           <div className="vision-video-container">
-            <video 
+            <iframe 
+              src="https://player.vimeo.com/video/1126916129?autoplay=1&loop=1&autopause=0&muted=1&background=1"
               className="vision-video"
-              autoPlay 
-              loop 
-              muted 
-              playsInline
-            >
-              <source src={visionVideo} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+              frameBorder="0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowFullScreen
+              title="Vision Video"
+            ></iframe>
           </div>
           <p className="vision-statement">
             At ALPHA PROJECT, we believe in uncovering stories,
