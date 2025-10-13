@@ -1,17 +1,152 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import './Hero.css';
-import alphaLogo from '../assets/alpha_logo_transparent.png';
+import apsr2025Video from '/home/alpha/alpha-1/src/assets/ALPHA PROJECT Showreel 2025.mp4';
 
 const Hero = () => {
+  const videoRef = useRef(null);
+  const canvasRef = useRef(null);
+  const [shadowColor, setShadowColor] = useState('rgba(100, 108, 255, 0.5)');
+  const [isMuted, setIsMuted] = useState(false);
+  const lastScrollY = useRef(0);
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
+
+  // Auto-mute/unmute based on scroll direction
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollContainer = document.querySelector('.app');
+      const currentScrollY = scrollContainer ? scrollContainer.scrollTop : window.scrollY;
+      
+      // Scrolling down - mute when past 100px
+      if (currentScrollY > 100 && currentScrollY > lastScrollY.current) {
+        if (videoRef.current && !isMuted) {
+          videoRef.current.muted = true;
+          setIsMuted(true);
+        }
+      }
+      // Scrolling back up to top - unmute when below 50px
+      else if (currentScrollY < 50 && currentScrollY < lastScrollY.current) {
+        if (videoRef.current && isMuted) {
+          videoRef.current.muted = false;
+          setIsMuted(false);
+        }
+      }
+      
+      lastScrollY.current = currentScrollY;
+    };
+
+    const scrollContainer = document.querySelector('.app');
+    if (scrollContainer) {
+      scrollContainer.addEventListener('scroll', handleScroll);
+      return () => scrollContainer.removeEventListener('scroll', handleScroll);
+    } else {
+      window.addEventListener('scroll', handleScroll);
+      return () => window.removeEventListener('scroll', handleScroll);
+    }
+  }, [isMuted]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    const canvas = canvasRef.current;
+    
+    if (!video || !canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    let animationFrameId;
+
+    const extractColor = () => {
+      if (video.paused || video.ended) return;
+
+      // Set canvas size to sample area (smaller for performance)
+      canvas.width = 160;
+      canvas.height = 90;
+
+      // Draw current video frame to canvas
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+      // Get image data from center area
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+
+      let r = 0, g = 0, b = 0;
+      let count = 0;
+
+      // Sample every few pixels for performance
+      for (let i = 0; i < data.length; i += 16) {
+        r += data[i];
+        g += data[i + 1];
+        b += data[i + 2];
+        count++;
+      }
+
+      // Calculate average color
+      r = Math.floor(r / count);
+      g = Math.floor(g / count);
+      b = Math.floor(b / count);
+
+      // Increase contrast by boosting the color values
+      r = Math.min(255, Math.floor(r * 1.5));
+      g = Math.min(255, Math.floor(g * 1.5));
+      b = Math.min(255, Math.floor(b * 1.5));
+
+      // Set the shadow color with enhanced values and higher opacity
+      setShadowColor(`rgba(${r}, ${g}, ${b}, 0.9)`);
+
+      animationFrameId = requestAnimationFrame(extractColor);
+    };
+
+    video.addEventListener('play', extractColor);
+
+    return () => {
+      video.removeEventListener('play', extractColor);
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
+  }, []);
+
   return (
     <section id="hero" className="hero">
       <div className="hero-content">
-        <div className="logo">
-          <img src={alphaLogo} alt="Alpha Project" className="logo-image" />
-          <h1 className="logo-text">ALPHA PROJECT</h1>
+        <div 
+          className="video-container"
+          style={{ '--shadow-color': shadowColor }}
+        >
+          <video 
+            ref={videoRef}
+            src={apsr2025Video} 
+            autoPlay 
+            loop
+            muted={isMuted}
+            playsInline
+            className="hero-video"
+            crossOrigin="anonymous"
+          />
+          <button 
+            onClick={toggleMute} 
+            className="mute-button"
+            aria-label={isMuted ? "Unmute video" : "Mute video"}
+          >
+            {isMuted ? (
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+                <line x1="23" y1="9" x2="17" y2="15"/>
+                <line x1="17" y1="9" x2="23" y2="15"/>
+              </svg>
+            ) : (
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+              </svg>
+            )}
+          </button>
+          <canvas ref={canvasRef} className="color-canvas" />
         </div>
-        <h2 className="hero-title">Creative Studio</h2>
-        <p className="hero-subtitle">Building Digital Experiences</p>
       </div>
     </section>
   );

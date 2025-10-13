@@ -1,61 +1,354 @@
-.about {
+/* .about {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 4rem 2rem;
-  background: #1a1a1a;
+  justify-content: center;
+  padding: 6rem 4rem;
+  background: #ffffff;
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1200px; 
   margin: 0 auto;
   width: 100%;
 }
 
 .section-title {
-  font-size: 5rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 3rem;
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #000000;
+  margin-bottom: 4rem;
   text-align: center;
   position: relative;
-  font-family: 'SF Pro Display', 'SF Pro', system-ui, sans-serif;
-}
-
-.section-title::after {
-  content: '';
-  position: absolute;
-  bottom: -1rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 4px;
-  background: linear-gradient(90deg, #646cff 0%, #9ca4ff 100%);
+  font-family: 'Nexa', 'SF Pro Display', 'SF Pro', system-ui, sans-serif;
 }
 
 .about-content {
-  max-width: 800px;
-  margin: 0 auto;
+  max-width: 900px;
+  margin: 0 auto 6rem;
+  text-align: center;
 }
 
 .about-text {
-  font-size: 1.9rem;
+  font-size: 2rem;
   line-height: 1.8;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(0, 0, 0, 0.8);
   margin-bottom: 2rem;
   text-align: center;
+  font-family: 'Nexa', 'SF Pro Text', 'SF Pro', system-ui, sans-serif;
+  font-weight: 300;
+}
+
+.about-text .scroll-reveal {
+  margin: 0;
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: inherit;
+  color: inherit;
+  display: inline;
+}
+
+.about-text .scroll-reveal-text {
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: inherit;
+  color: inherit;
+  display: inline;
+}
+
+.about-text .scroll-reveal p {
+  margin: 0;
+  display: inline;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  margin-top: 4rem;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stat-number {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #000000;
+  font-family: 'SF Pro Display', 'SF Pro', system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  min-width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.count-up-text {
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  font-family: inherit;
+  font-variant-numeric: tabular-nums;
+  display: inline-block;
+  min-width: 1ch;
+  text-align: center;
+}
+
+
+.stat-item:nth-child(1) .stat-number {
+  min-width: 3.5ch; 
+}
+
+.stat-item:nth-child(3) .stat-number {
+  min-width: 6ch; 
+}
+
+.stat-item:nth-child(5) .stat-number {
+  min-width: 4ch;
+}
+
+.stat-item:nth-child(7) .stat-number {
+  min-width: 12ch; 
+}
+
+.stat-label {
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.6);
   font-family: 'SF Pro Text', 'SF Pro', system-ui, sans-serif;
+  white-space: nowrap;
+}
+
+.stat-divider {
+  font-size: 3rem;
+  color: rgba(0, 0, 0, 0.3);
+  font-weight: 300;
 }
 
 @media (max-width: 768px) {
+  .about {
+    padding: 4rem 2rem;
+  }
+
   .section-title {
     font-size: 2.5rem;
+    margin-bottom: 2rem;
   }
   
   .about-text {
-    font-size: 2.1rem;
+    font-size: 1.2rem;
   }
-  .about-content-size {
-    font-size: 2rem;
+
+  .stats-container {
+    gap: 2rem;
+    flex-direction: column;
+  }
+
+  .stat-divider {
+    display: none;
+  }
+
+  .stat-number {
+    font-size: 2.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.9rem;
+  }
+}  */
+
+
+.about {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 4rem 0 4rem;
+  background: #f0f0f0;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  /* background-color: #ffffff;
+  padding: 4rem 2rem; */
+  /* border-radius: 20px; */
+}
+
+.section-title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #000000;
+  margin-bottom: 4rem;
+  text-align: center;
+  position: relative;
+  font-family: 'Nexa', 'SF Pro Display', 'SF Pro', system-ui, sans-serif;
+}
+
+.about-content {
+  max-width: 900px;
+  margin: 0 auto 6rem;
+  text-align: center;
+}
+
+.about-text {
+  font-size: 2rem;
+  line-height: 1.8;
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: 2rem;
+  text-align: center;
+  font-family: 'Nexa', 'SF Pro Text', 'SF Pro', system-ui, sans-serif;
+  font-weight: 300;
+}
+
+.about-text strong,
+.about-text b {
+  font-weight: 700;
+  color: #000000;
+}
+
+.about-text .scroll-reveal {
+  margin: 0;
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: inherit;
+  color: inherit;
+  display: inline;
+}
+
+.about-text .scroll-reveal-text {
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: inherit;
+  color: inherit;
+  display: inline;
+}
+
+.about-text .scroll-reveal p {
+  margin: 0;
+  display: inline;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  margin-top: 4rem;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* .stat-number {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #000000;
+  font-family: 'SF Pro Display', 'SF Pro', system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  min-width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+} */
+
+.stat-number {
+  font-size: 3rem;
+  font-weight: 900; /* Nexa Heavy for bold numeric look */
+  color: #000000;
+  font-family: 'Nexa', 'SF Pro Display', 'SF Pro', system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.count-up-text {
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  font-family: inherit;
+  font-variant-numeric: tabular-nums;
+  display: inline-block;
+  min-width: 1ch;
+  text-align: center;
+}
+
+/* Reserve space for each counter to prevent layout shift */
+.stat-item:nth-child(1) .stat-number {
+  min-width: 3.5ch;
+}
+
+.stat-item:nth-child(3) .stat-number {
+  min-width: 6ch;
+}
+
+.stat-item:nth-child(5) .stat-number {
+  min-width: 4ch;
+}
+
+/* .stat-item:nth-child(7) .stat-number {
+  min-width: 12ch;
+} */
+
+/* .stat-label {
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.6);
+  font-family: 'SF Pro Text', 'SF Pro', system-ui, sans-serif;
+  white-space: nowrap;
+} */
+
+.stat-label {
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.6);
+  font-family: 'Nexa', 'SF Pro Text', 'SF Pro', system-ui, sans-serif;
+  font-weight: 300; /* Nexa ExtraLight for labels */
+  /* white-space: nowrap; */
+}
+
+.stat-divider {
+  font-size: 3rem;
+  color: rgba(0, 0, 0, 0.3);
+  font-weight: 300;
+}
+
+@media (max-width: 768px) {
+  .about {
+    padding: 4rem 2rem;
+  }
+  .section-title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+  .about-text {
+    font-size: 1.2rem;
+  }
+  .stats-container {
+    gap: 2rem;
+    flex-direction: column;
+  }
+  .stat-divider {
+    display: none;
+  }
+  .stat-number {
+    font-size: 2.5rem;
+  }
+  .stat-label {
+    font-size: 0.9rem;
   }
 }

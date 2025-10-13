@@ -46,3 +46,20 @@
   font-style: normal;
   font-display: swap;
 }
+
+/* Nexa Font Faces */
+@font-face {
+  font-family: 'Nexa';
+  src: url('/src/assets/Nexa-ExtraLight.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nexa';
+  src: url('/src/assets/Nexa-Heavy.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}

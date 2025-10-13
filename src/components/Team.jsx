@@ -1,59 +1,60 @@
 import React from 'react';
 import './Team.css';
 import ScrollReveal from '../assets/ScrollReveal';
+import TrueFocus from '../assets/TrueFocus';
+import SpotlightCard from '../assets/SpotlightCard';
+import ShinyText from '../assets/ShinyText';
 
 const Team = () => {
   const teamMembers = [
-    { name: 'John Doe', role: 'Creative Director', initials: 'JD' },
-    { name: 'Jane Smith', role: 'Lead Designer', initials: 'JS' },
-    { name: 'Mike Johnson', role: 'Developer', initials: 'MJ' },
-    { name: 'Sarah Williams', role: 'Project Manager', initials: 'SW' },
+    { name: 'Shadi Jebril', role: 'CEO, Director, Director of Photography' },
+    { name: 'Raad Meryan', role: 'Technical & Creative Director' },
+    { name: 'Siwar Al Qasim', role: 'Screenwriter' },
+    { name: 'Ali Al Rashaideh', role: 'Line Producer' },
+    { name: 'Baraa Jebril', role: 'Post-Production Supervisor, Editor' },
+    { name: 'Omar Zreqat', role: 'Motion Graphic Artist' },
+    { name: 'Laith Jebril', role: 'CGI Artist' },
+    { name: 'Obada Al Heyari', role: 'Set Production Assistant' }
   ];
 
   return (
-    <section id="team" className="team">
-      <div className="container">
-        <ScrollReveal
-          baseOpacity={0}
-          enableBlur={true}
-          baseRotation={5}
-          blurStrength={10}
-          as="h2"
-          containerClassName="section-title"
-        >
-          Our Team
-        </ScrollReveal>
+    <div className="team">
+      <div className="team-container">
+        <ShinyText 
+          text="Services"
+          disabled={false}
+          speed={1.7}
+          className="section-title"
+          baseColor="#ffffff" 
+          highlightColor="#000000f2"
+        />
+        
+        {/* 941414 */}
+        {/* b10101ff */}
+        <div className="services-section">
+          <p className="services-description">
+            At ALPHA PROJECT, we deliver<br /> {' '}
+            <span style={{ color: "#ffffffff" }}>
+              <strong>Short Films</strong> | <strong>Documentaries</strong> |
+              <strong> TV Commercials </strong> | <strong>Projects and Products</strong>
+              <br /><strong>Event Coverage</strong> | <strong>Website Development</strong>
+            </span>
+            <br /><br />All executed by our experienced team:
+          </p>
+        </div>
+
         <div className="team-grid">
           {teamMembers.map((member, index) => (
             <div key={index} className="team-member">
-              <div className="member-avatar">
-                <span className="member-initials">{member.initials}</span>
+              <div className="member-details">
+                <h3>{member.name}</h3>
+                <p>{member.role}</p>
               </div>
-              <ScrollReveal
-                baseOpacity={0}
-                enableBlur={true}
-                baseRotation={5}
-                blurStrength={10}
-                as="h3"
-                containerClassName="member-name"
-              >
-                {member.name}
-              </ScrollReveal>
-              <ScrollReveal
-                baseOpacity={0}
-                enableBlur={true}
-                baseRotation={5}
-                blurStrength={10}
-                as="p"
-                containerClassName="member-role"
-              >
-                {member.role}
-              </ScrollReveal>
             </div>
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

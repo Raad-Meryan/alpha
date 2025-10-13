@@ -1,35 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import './Navigation.css';
-import alphaLogo from '../assets/alpha_logo_transparent.png';
+import alphaLogo from '../assets/ALPHALogo.png';
 
-const Navigation = () => {
+const Navigation = ({ onNavigate, ids }) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const scrollContainer = document.querySelector('.app');
+      const scrollY = scrollContainer ? scrollContainer.scrollTop : window.scrollY;
+      setIsScrolled(scrollY > 50);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const scrollContainer = document.querySelector('.app');
+    if (scrollContainer) {
+      scrollContainer.addEventListener('scroll', handleScroll);
+      return () => scrollContainer.removeEventListener('scroll', handleScroll);
+    } else {
+      window.addEventListener('scroll', handleScroll);
+      return () => window.removeEventListener('scroll', handleScroll);
+    }
   }, []);
 
   const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    const sectionIndex = ids.indexOf(sectionId);
+    if (sectionIndex !== -1 && onNavigate) {
+      onNavigate(sectionIndex);
     }
   };
 
   const navItems = [
-    { id: 'hero', label: 'Home' },
     { id: 'about', label: 'About' },
-    { id: 'vision', label: 'Vision' },
-    { id: 'logos', label: 'Brands' },
-    { id: 'team', label: 'Team' },
-    { id: 'clients', label: 'Clients' },
-    { id: 'gallery', label: 'Work' },
-    { id: 'contact', label: 'Contact' },
+    { id: 'team', label: 'Services' },
+    { id: 'clients', label: 'Portfolio' },
   ];
 
   return (
@@ -37,17 +40,27 @@ const Navigation = () => {
       <div className="nav-container">
         <div className="nav-logo" onClick={() => scrollToSection('hero')}>
           <img src={alphaLogo} alt="Alpha" className="nav-logo-image" />
-          <span className="nav-logo-text">ALPHA PROJECT</span>
         </div>
+        
         <ul className="nav-menu">
           {navItems.map((item) => (
             <li key={item.id} className="nav-item">
-              <button onClick={() => scrollToSection(item.id)} className="nav-link">
+              <button 
+                onClick={() => scrollToSection(item.id)} 
+                className="nav-link"
+              >
                 {item.label}
               </button>
             </li>
           ))}
+          <li className="nav-separator">|</li>
         </ul>
+
+        <div className="nav-contact">
+          <button onClick={() => scrollToSection('contact')} className="nav-link contact-link">
+            Contact
+          </button>
+        </div>
       </div>
     </nav>
   );

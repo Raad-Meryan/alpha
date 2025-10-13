@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Contact.css';
-import ScrollReveal from '../assets/ScrollReveal';
+import ShinyText from '../assets/ShinyText';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -23,63 +23,44 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="contact">
-      <div className="container">
-        <ScrollReveal
-          baseOpacity={0}
-          enableBlur={true}
-          baseRotation={5}
-          blurStrength={10}
-          as="h2"
-          containerClassName="section-title"
-        >
-          Get In Touch
-        </ScrollReveal>
+    <div className="contact">
+      <div className="contact-container">
+        <ShinyText 
+          text="Get In Touch"
+          disabled={false}
+          speed={4}
+          className="section-title"
+          baseColor="#ffffff"
+          highlightColor="rgba(172, 49, 49, 0.95)"
+        />
         <div className="contact-content">
           <div className="contact-info">
             <div className="info-item">
-              <div className="info-icon">📧</div>
-              <div>
-                <ScrollReveal
-                  baseOpacity={0}
-                  enableBlur={true}
-                  baseRotation={5}
-                  blurStrength={10}
-                  as="h3"
-                >
-                  Email
-                </ScrollReveal>
-                <a href="mailto:info@alpha.com">info@alpha.com</a>
+              {/* <div className="info-icon">✉</div> */}
+              <div className="info-details">
+                <h3>Email</h3>
+                <a href="mailto:ALPHAPROJECTJO@OUTLOOK.COM">ALPHAPROJECTJO@OUTLOOK.COM</a>
               </div>
             </div>
             <div className="info-item">
-              <div className="info-icon">📱</div>
-              <div>
-                <ScrollReveal
-                  baseOpacity={0}
-                  enableBlur={true}
-                  baseRotation={5}
-                  blurStrength={10}
-                  as="h3"
-                >
-                  Phone
-                </ScrollReveal>
-                <a href="tel:+1234567890">+1 (234) 567-890</a>
+              {/* <div className="info-icon">📱</div> */}
+              <div className="info-details">
+                <h3>Phone</h3>
+                <a href="tel:+96278108282">+962 78 1082828</a>
               </div>
             </div>
             <div className="info-item">
-              <div className="info-icon">📸</div>
-              <div>
-                <ScrollReveal
-                  baseOpacity={0}
-                  enableBlur={true}
-                  baseRotation={5}
-                  blurStrength={10}
-                  as="h3"
-                >
-                  Instagram
-                </ScrollReveal>
-                <a href="https://instagram.com/alpha" target="_blank" rel="noopener noreferrer">@alpha</a>
+              {/* <div className="info-icon">📸</div> */}
+              <div className="info-details">
+                <h3>Instagram</h3>
+                <a href="https://instagram.com/alphaprojectjo" target="_blank" rel="noopener noreferrer">@alphaprojectjo</a>
+              </div>
+            </div>
+            <div className="info-item">
+              {/* <div className="info-icon">📍</div> */}
+              <div className="info-details">
+                <h3>Location</h3>
+                <p>The Core | KHBP | Amman | Jordan</p>
               </div>
             </div>
           </div>
@@ -118,7 +99,7 @@ const Contact = () => {
           </form>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

@@ -1,0 +1,44 @@
+.shiny-text {
+  /* Customizable variables */
+  --shine-base-color: #000000; /* base text color (visible) */
+  --shine-highlight-color: rgba(255, 0, 0, 0.9); /* moving stripe color */
+  --shine-duration: 1s;
+
+  position: relative;
+  display: inline-block;
+}
+
+.shiny-text__base {
+  color: var(--shine-base-color);
+}
+
+.shiny-text__shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0) 40%,
+    var(--shine-highlight-color) 50%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: shine var(--shine-duration) linear infinite;
+  pointer-events: none;
+}
+
+@keyframes shine {
+  0% {
+    background-position: 100%;
+  }
+  100% {
+    background-position: -100%;
+  }
+}
+
+.shiny-text.disabled .shiny-text__shine {
+  animation: none;
+}
