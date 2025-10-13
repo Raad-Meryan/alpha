@@ -49,6 +49,15 @@
   animation: fadeIn 1s ease-in;
 }
 
+/* Temporary placeholder while the hero video is disabled */
+.video-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+}
+
 .color-canvas {
   display: none;
 }

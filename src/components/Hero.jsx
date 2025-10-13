@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import './Hero.css';
-import apsr2025Video from '/home/alpha/alpha-1/src/assets/ALPHA PROJECT Showreel 2025.mp4';
+// import apsr2025Video from '/home/alpha/alpha-1/src/assets/ALPHA PROJECT Showreel 2025.mp4';
 
 const Hero = () => {
   const videoRef = useRef(null);
@@ -117,6 +117,7 @@ const Hero = () => {
           className="video-container"
           style={{ '--shadow-color': shadowColor }}
         >
+          {/*
           <video 
             ref={videoRef}
             src={apsr2025Video} 
@@ -146,6 +147,8 @@ const Hero = () => {
             )}
           </button>
           <canvas ref={canvasRef} className="color-canvas" />
+          */}
+          <div className="video-placeholder" aria-hidden="true" />
         </div>
       </div>
     </section>
