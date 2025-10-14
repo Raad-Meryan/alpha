@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import './Hero.css';
+import MuxVideo from '@mux/mux-video-react';
 // import apsr2025Video from '/home/alpha/alpha-1/src/assets/ALPHA PROJECT Showreel 2025.mp4';
 
 const Hero = () => {
@@ -22,15 +23,29 @@ const Hero = () => {
       const scrollContainer = document.querySelector('.app');
       const currentScrollY = scrollContainer ? scrollContainer.scrollTop : window.scrollY;
       
-      // Scrolling down - mute when past 100px
+      // Only handle mute logic when on the hero section
+      const heroSection = document.querySelector('#hero');
+      if (!heroSection) return;
+      
+      const heroRect = heroSection.getBoundingClientRect();
+      const isHeroVisible = heroRect.top <= window.innerHeight && heroRect.bottom >= 0;
+      
+      if (!isHeroVisible) {
+        // Auto-mute when hero is not visible
+        if (videoRef.current && !isMuted) {
+          videoRef.current.muted = true;
+          setIsMuted(true);
+        }
+        return;
+      }
+      
+      // Only manage auto-mute within the hero section
       if (currentScrollY > 100 && currentScrollY > lastScrollY.current) {
         if (videoRef.current && !isMuted) {
           videoRef.current.muted = true;
           setIsMuted(true);
         }
-      }
-      // Scrolling back up to top - unmute when below 50px
-      else if (currentScrollY < 50 && currentScrollY < lastScrollY.current) {
+      } else if (currentScrollY < 50 && currentScrollY < lastScrollY.current) {
         if (videoRef.current && isMuted) {
           videoRef.current.muted = false;
           setIsMuted(false);
@@ -42,10 +57,10 @@ const Hero = () => {
 
     const scrollContainer = document.querySelector('.app');
     if (scrollContainer) {
-      scrollContainer.addEventListener('scroll', handleScroll);
+      scrollContainer.addEventListener('scroll', handleScroll, { passive: true });
       return () => scrollContainer.removeEventListener('scroll', handleScroll);
     } else {
-      window.addEventListener('scroll', handleScroll);
+      window.addEventListener('scroll', handleScroll, { passive: true });
       return () => window.removeEventListener('scroll', handleScroll);
     }
   }, [isMuted]);
@@ -117,16 +132,20 @@ const Hero = () => {
           className="video-container"
           style={{ '--shadow-color': shadowColor }}
         >
-          {/*
-          <video 
+          <MuxVideo 
             ref={videoRef}
-            src={apsr2025Video} 
+            playbackId={import.meta.env.VITE_MUX_HERO_PLAYBACK_ID}
             autoPlay 
             loop
             muted={isMuted}
             playsInline
             className="hero-video"
-            crossOrigin="anonymous"
+            style={{
+              width: '100%',
+              height: 'auto',
+              maxHeight: '75vh',
+              objectFit: 'contain'
+            }}
           />
           <button 
             onClick={toggleMute} 
@@ -147,8 +166,6 @@ const Hero = () => {
             )}
           </button>
           <canvas ref={canvasRef} className="color-canvas" />
-          */}
-          <div className="video-placeholder" aria-hidden="true" />
         </div>
       </div>
     </section>
@@ -156,3 +173,4 @@ const Hero = () => {
 };
 
 export default Hero;
+
