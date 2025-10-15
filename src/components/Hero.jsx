@@ -8,7 +8,9 @@ const Hero = () => {
   const [shadowColor, setShadowColor] = useState('rgba(100, 108, 255, 0.5)');
   const [isMuted, setIsMuted] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const lastScrollY = useRef(0);
+  const loadTimeoutRef = useRef(null);
 
   const toggleMute = () => {
     if (videoRef.current) {
@@ -125,6 +127,15 @@ const Hero = () => {
     };
   }, []);
 
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (loadTimeoutRef.current) {
+        clearTimeout(loadTimeoutRef.current);
+      }
+    };
+  }, []);
+
   return (
     <section id="hero" className="hero">
       <div className="hero-content">
@@ -143,9 +154,48 @@ const Hero = () => {
             poster={`https://image.mux.com/${import.meta.env.VITE_MUX_HERO_PLAYBACK_ID}/thumbnail.jpg?time=1`}
             className="hero-video"
             style={{ width: '100%', height: '100%', maxHeight: '75vh', objectFit: 'contain' }}
-            onCanPlay={() => setIsLoading(false)}
-            onLoadStart={() => setIsLoading(true)}
-            onLoadedData={() => setIsLoading(false)}
+            onCanPlay={() => {
+              console.log('Video can play');
+              setIsLoading(false);
+              setError(null);
+              if (loadTimeoutRef.current) {
+                clearTimeout(loadTimeoutRef.current);
+                loadTimeoutRef.current = null;
+              }
+            }}
+            onLoadStart={() => {
+              console.log('Video load started');
+              setIsLoading(true);
+              setError(null);
+              
+              // Set a timeout for loading
+              if (loadTimeoutRef.current) clearTimeout(loadTimeoutRef.current);
+              loadTimeoutRef.current = setTimeout(() => {
+                setError('Video is taking too long to load. Please check your connection and try again.');
+                setIsLoading(false);
+              }, 30000); // 30 second timeout
+            }}
+            onLoadedData={() => {
+              console.log('Video data loaded');
+              setIsLoading(false);
+            }}
+            onPlaying={() => {
+              console.log('Video is playing');
+              setIsLoading(false);
+            }}
+            onWaiting={() => {
+              console.log('Video is waiting/buffering');
+              setIsLoading(true);
+            }}
+            onError={(e) => {
+              console.error('Video error:', e);
+              setError('Video failed to load. Please refresh the page.');
+              setIsLoading(false);
+            }}
+            onStalled={() => {
+              console.log('Video stalled');
+              setError('Video loading is slow. Check your connection.');
+            }}
           />
           <button onClick={toggleMute} className="mute-button" aria-label={isMuted ? 'Unmute video' : 'Mute video'}>
             {isMuted ? (
@@ -162,10 +212,30 @@ const Hero = () => {
             )}
           </button>
           <canvas ref={canvasRef} className="color-canvas" />
-          {isLoading && (
+          {isLoading && !error && (
             <div className="video-loading">
               <div className="loading-spinner"></div>
               <p>Loading video...</p>
+              <small>Playback ID: {import.meta.env.VITE_MUX_HERO_PLAYBACK_ID}</small>
+            </div>
+          )}
+          {error && (
+            <div className="video-loading">
+              <div style={{ color: '#ff6b6b', fontSize: '18px' }}>⚠️</div>
+              <p style={{ color: '#ff6b6b' }}>{error}</p>
+              <button 
+                onClick={() => window.location.reload()} 
+                style={{ 
+                  background: '#646cff', 
+                  color: 'white', 
+                  border: 'none', 
+                  padding: '8px 16px', 
+                  borderRadius: '4px', 
+                  cursor: 'pointer' 
+                }}
+              >
+                Retry
+              </button>
             </div>
           )}
         </div>
