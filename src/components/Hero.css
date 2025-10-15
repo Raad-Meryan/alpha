@@ -28,15 +28,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 90vw;
-  max-height: 75vh;
+  width: 90vw;
+  height: 75vh;
   position: relative;
   --shadow-color: rgba(100, 108, 255, 0.5);
 }
 .hero-video {
-  width: 100%;
-  height: auto;
-  max-height: 100vh;
+  width: 100% !important;
+  height: 100% !important;
   object-fit: contain;
   filter: drop-shadow(0 6px 20px var(--shadow-color)) drop-shadow(0 0 40px var(--shadow-color));
   transition: filter 0.4s ease-in-out;
@@ -49,6 +48,34 @@
   border: 1px dashed rgba(255, 255, 255, 0.2);
   border-radius: 12px;
 }
+
+.video-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: white;
+  z-index: 5;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  border-top: 3px solid #646cff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .color-canvas {
   display: none;
 }
