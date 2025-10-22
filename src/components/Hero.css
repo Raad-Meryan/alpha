@@ -5,7 +5,7 @@
   justify-content: center;
   background: linear-gradient(135deg, #000000 0%, #000000 100%);
   position: relative;
-  overflow: hidden;
+  /* overflow:auto; */
 }
 .hero::before {
   content: '';

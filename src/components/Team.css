@@ -1,20 +1,21 @@
 .team {
-  min-height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 80px 4rem 80px 4rem;
+  padding: clamp(2rem, 1vh, 6rem) clamp(1rem, 5vw, 4rem) clamp(2rem, 5vh, 3rem);
   background: #0f0e0e;
-  /* #f0f0f0; */
+  box-sizing: border-box;
+  position: relative;
+  scroll-margin-top: var(--nav-h);
 }
 
 .section-title {
-  font-size: 3.5rem;
+  font-size: clamp(2rem, 6vw, 3.5rem);
   font-weight: 900;
-  color: #000000;
+  color: #ffffff;
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: clamp(1.5rem, 4vh, 2.5rem);
   font-family: 'Nexa', 'SF Pro Display', 'SF Pro', system-ui, sans-serif;
+  line-height: 1.2;
 }
 
 .team-container {
@@ -23,112 +24,232 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: clamp(1rem, 1vh, 1rem);
 }
 
 .services-section {
-  /* margin-top: 1.5rem; */
   text-align: center;
   width: 100%;
-  max-width: 1000px;
+  max-width: min(92vw, 1100px);
+  padding: 0 clamp(0.5rem, 2vw, 1rem);
+  margin-bottom: clamp(1rem, 3vh, 1.5rem);
 }
 
 .services-description {
-  font-size: 1.3rem;
-  color: #ffffff;
-  margin-bottom: 1.5rem;
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  color: #ffffffdd;
+  margin-bottom: 0;
   font-family: 'Nexa', 'SF Pro Text', 'SF Pro', system-ui, sans-serif;
   font-weight: 300;
-  line-height: 1.8;
+  line-height: 1.7;
   text-align: center;
 }
 
 .services-description strong {
   font-weight: 900;
   font-family: 'Nexa', 'SF Pro Display', 'SF Pro', system-ui, sans-serif;
+  display: inline-block;
+  color: #ffffff;
 }
 
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: clamp(1.25rem, 3vw, 2rem);
   width: 100%;
+  max-width: 1300px;
+  padding: 0 clamp(0.5rem, 2vw, 1rem);
 }
 
 .team-member {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1.5rem;
-  padding: 2rem;
+  gap: clamp(0.9rem, 2.2vw, 1.5rem);
+  padding: clamp(1.75rem, 4.5vw, 2.5rem) clamp(1.5rem, 3.5vw, 2rem);
   background: #ac313114;
-  border-radius: 15px;
+  border-radius: 16px;
   border: 2px solid #ac313133;
-  transition: all 0.3s ease;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease, border-color 0.35s ease;
   position: relative;
   overflow: hidden;
+  width: 100%;
+  min-height: clamp(180px, 18vh, 220px);
+  box-sizing: border-box;
+  cursor: pointer;
 }
 
 .team-member::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(172, 49, 49, 0.1), transparent);
-  transition: left 0.5s ease;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(172, 49, 49, 0.15), transparent);
+  transition: transform 0.6s ease;
 }
 
 .team-member:hover::before {
-  left: 100%;
+  transform: translateX(100%);
 }
 
 .team-member:hover {
   background: #ac313126;
-  border-color: #ac313166;
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(172, 49, 49, 0.2);
-}
-
-.member-icon {
-  font-size: 2.2rem;
-  color: #ac3131;
-  min-width: 50px;
+  border-color: #ac313180;
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(172, 49, 49, 0.3);
 }
 
 .member-details {
   text-align: center;
+  width: 100%;
+  z-index: 1;
 }
 
 .member-details h3 {
-  font-size: 1.2rem;
+  font-size: clamp(1.05rem, 3.2vw, 1.3rem);
   color: #ffffff;
-  margin-bottom: 0.8rem;
+  margin-bottom: clamp(0.5rem, 1.5vw, 0.8rem);
   font-weight: 900;
   font-family: 'Nexa', 'SF Pro Display', 'SF Pro', system-ui, sans-serif;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
 }
 
 .member-details p {
   color: #ffffffd9;
   font-family: 'Nexa', 'SF Pro Text', 'SF Pro', system-ui, sans-serif;
   font-weight: 300;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2.5vw, 1.05rem);
   margin: 0;
+  line-height: 1.5;
 }
 
-@media (max-width: 768px) {
+/* Large Tablets and Below */
+@media (max-width: 1024px) {
+  .team {
+    padding: clamp(4.5rem, 9vh, 5.5rem) clamp(1rem, 4vw, 2.5rem) clamp(1.5rem, 4vh, 2rem);
+  }
+  
   .team-grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
+    gap: clamp(1rem, 2.8vw, 1.75rem);
+  }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+  .team {
+    padding: clamp(4.5rem, 8vh, 5.5rem) clamp(1rem, 3vw, 1.5rem) clamp(1rem, 3vh, 1.5rem);
   }
   
-  .member-avatar {
-    width: 120px;
-    height: 120px;
+  .section-title {
+    font-size: clamp(1.8rem, 5.5vw, 2.5rem);
+    margin-bottom: clamp(1.25rem, 3.5vh, 2rem);
   }
   
-  .member-initials {
-    font-size: 2rem;
+  .services-description {
+    font-size: clamp(0.95rem, 2.8vw, 1.15rem);
+    line-height: 1.6;
+  }
+  
+  .team-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+    gap: clamp(1rem, 2.5vw, 1.5rem);
+  }
+  
+  .team-member {
+    min-height: clamp(170px, 17vh, 210px);
+    padding: clamp(1.5rem, 4vw, 1.75rem) clamp(1.25rem, 3vw, 1.5rem);
+  }
+}
+
+/* Mobile Landscape and Small Tablets */
+@media (max-width: 640px) {
+  .team {
+    padding: clamp(4rem, 7vh, 5rem) clamp(0.75rem, 3vw, 1.25rem) clamp(1rem, 3vh, 1.5rem);
+  }
+  
+  .team-container {
+    gap: clamp(1.5rem, 4vh, 2rem);
+  }
+  
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: clamp(1rem, 2.5vw, 1.25rem);
+  }
+}
+
+/* Mobile Portrait */
+@media (max-width: 480px) {
+  .team {
+    padding: clamp(4rem, 7vh, 5rem) clamp(0.75rem, 3vw, 1rem) clamp(0.75rem, 2vh, 1rem);
+  }
+  
+  .section-title {
+    font-size: clamp(1.5rem, 7vw, 2rem);
+    margin-bottom: clamp(1rem, 3vh, 1.5rem);
+  }
+  
+  .services-section {
+    padding: 0 clamp(0.5rem, 2vw, 0.75rem);
+  }
+  
+  .services-description {
+    font-size: clamp(0.9rem, 3.8vw, 1.05rem);
+    line-height: 1.6;
+  }
+  
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: clamp(0.75rem, 2vw, 1rem);
+    padding: 0 0.5rem;
+  }
+  
+  .team-member {
+    min-height: clamp(160px, 16vh, 190px);
+    padding: clamp(1.25rem, 3.5vw, 1.5rem) clamp(1rem, 2.5vw, 1.25rem);
+  }
+  
+  .member-details h3 {
+    font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+  }
+  
+  .member-details p {
+    font-size: clamp(0.85rem, 3vw, 0.95rem);
+  }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 360px) {
+  .team {
+    padding: 3.5rem 0.75rem 0.75rem;
+  }
+  
+  .section-title {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+  
+  .services-description {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  
+  .team-grid {
+    gap: 0.75rem;
+    padding: 0 0.25rem;
+  }
+  
+  .team-member {
+    min-height: 150px;
+    padding: 1.25rem 1rem;
+  }
+  
+  .member-details h3 {
+    font-size: 0.95rem;
+  }
+  
+  .member-details p {
+    font-size: 0.8rem;
   }
 }

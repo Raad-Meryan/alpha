@@ -1,9 +1,9 @@
 .clients {
-  min-height: 100vh;
+  /* min-height: 100vh; */
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: 80px 4rem 4rem 4rem;
+  padding: 5px 2rem 2rem 2rem;
   background: #0f0e0e ;
 }
 
@@ -21,7 +21,7 @@
   align-items: center;
 }
 
-.clients-description {
+.clients-description  {
   margin-top: 2rem;
   font-size: 1.3rem;
   color: rgba(255, 255, 255, 0.9);

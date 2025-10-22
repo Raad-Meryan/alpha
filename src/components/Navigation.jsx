@@ -1,53 +1,88 @@
-import React, { useState, useEffect } from 'react';
-import './Navigation.css';
-import alphaLogo from '../assets/ALPHALogo.png';
+import React, { useEffect, useRef, useState } from "react";
+import "./Navigation.css";
+import alphaLogo from "../assets/ALPHALogo.png";
 
-const Navigation = ({ onNavigate, ids }) => {
+export default function Navigation({ ids }) {
+  const navRef = useRef(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeId, setActiveId] = useState("about");
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollContainer = document.querySelector('.app');
-      const scrollY = scrollContainer ? scrollContainer.scrollTop : window.scrollY;
-      setIsScrolled(scrollY > 50);
-    };
+  const sectionIds = Array.isArray(ids) && ids.length ? ids : ["about", "services", "portfolio", "contact"];
 
-    const scrollContainer = document.querySelector('.app');
-    if (scrollContainer) {
-      scrollContainer.addEventListener('scroll', handleScroll);
-      return () => scrollContainer.removeEventListener('scroll', handleScroll);
-    } else {
-      window.addEventListener('scroll', handleScroll);
-      return () => window.removeEventListener('scroll', handleScroll);
-    }
-  }, []);
+  const getScrollContainer = () => document.querySelector(".app") || window;
+
+  const getNavHeight = () => (navRef.current ? navRef.current.offsetHeight : 72);
 
   const scrollToSection = (sectionId) => {
-    const sectionIndex = ids.indexOf(sectionId);
-    if (sectionIndex !== -1 && onNavigate) {
-      onNavigate(sectionIndex);
+    const container = document.querySelector(".app");
+    const el = document.getElementById(sectionId);
+    if (!el) return;
+    const offset = getNavHeight();
+    if (container) {
+      const top = el.offsetTop - offset;
+      container.scrollTo({ top, behavior: "smooth" });
+    } else {
+      const rect = el.getBoundingClientRect();
+      const y = rect.top + window.pageYOffset - offset;
+      window.scrollTo({ top: y, behavior: "smooth" });
     }
   };
 
+  const goHome = () => {
+    const id = document.getElementById("hero") ? "hero" : sectionIds[0];
+    scrollToSection(id);
+  };
+
+  useEffect(() => {
+    const scroller = getScrollContainer();
+    const onScroll = () => {
+      const y = scroller === window ? window.scrollY : scroller.scrollTop;
+      setIsScrolled(y > 10);
+    };
+    onScroll();
+    scroller.addEventListener("scroll", onScroll, { passive: true });
+    return () => scroller.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const scroller = document.querySelector(".app");
+    const options = {
+      root: scroller || null,
+      threshold: 0.6,
+      rootMargin: `-${getNavHeight()}px 0px -40% 0px`,
+    };
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter((e) => e.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+      if (visible[0]) setActiveId(visible[0].target.id);
+    }, options);
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, [sectionIds]);
+
   const navItems = [
-    { id: 'about', label: 'About' },
-    { id: 'team', label: 'Services' },
-    { id: 'clients', label: 'Portfolio' },
+    { id: "about", label: "About" },
+    { id: "team", label: "Services" },
+    { id: "clients", label: "Portfolio" },
   ];
 
   return (
-    <nav className={`navigation ${isScrolled ? 'scrolled' : ''}`}>
+    <nav ref={navRef} className={`navigation ${isScrolled ? "scrolled" : ""}`}>
       <div className="nav-container">
-        <div className="nav-logo" onClick={() => scrollToSection('hero')}>
+        <div className="nav-logo" onClick={goHome}>
           <img src={alphaLogo} alt="Alpha" className="nav-logo-image" />
         </div>
-        
         <ul className="nav-menu">
           {navItems.map((item) => (
             <li key={item.id} className="nav-item">
-              <button 
-                onClick={() => scrollToSection(item.id)} 
-                className="nav-link"
+              <button
+                onClick={() => scrollToSection(item.id)}
+                className={`nav-link ${activeId === item.id ? "active" : ""}`}
+                aria-current={activeId === item.id ? "page" : undefined}
               >
                 {item.label}
               </button>
@@ -55,15 +90,15 @@ const Navigation = ({ onNavigate, ids }) => {
           ))}
           <li className="nav-separator">|</li>
         </ul>
-
         <div className="nav-contact">
-          <button onClick={() => scrollToSection('contact')} className="nav-link contact-link">
+          <button
+            onClick={() => scrollToSection("contact")}
+            className={`nav-link contact-link ${activeId === "contact" ? "active" : ""}`}
+          >
             Contact
           </button>
         </div>
       </div>
     </nav>
   );
-};
-
-export default Navigation;
+}
